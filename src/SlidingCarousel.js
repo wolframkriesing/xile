@@ -1,14 +1,17 @@
 import * as symbols from './symbols.js';
 import ArrowDirectionMixin from './ArrowDirectionMixin.js';
 import PageDotsMixin from './PageDotsMixin.js';
-import SlidingPages from './SlidingPages.js';
+
+import DirectionSelectionMixin from './DirectionSelectionMixin.js';
+import SlidingViewport from './SlidingViewport.js';
 
 
 const Base =
   ArrowDirectionMixin(
   PageDotsMixin(
-    SlidingPages
-  ));
+  DirectionSelectionMixin(
+    SlidingViewport
+  )));
 
 
 /**
