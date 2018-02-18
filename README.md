@@ -26,3 +26,13 @@ Let's see if this works.
 [ArrowDirectionMixin]: https://github.com/elix/elix/blob/master/src/ArrowDirectionMixin.js
 [carousel]: https://github.com/elix/elix/blob/master/src/SlidingCarousel.js
 [hc-carousel]: https://github.com/holidaycheck/hc-carousel-component
+
+# Install/setup, via nix
+
+This project can be built and run locally using nix, to provide a reproducible environment (kinda like docker).
+Using nix we provide the right node version, on top of which all other things are run.
+1. Make sure to have nix installed (see [nixos.org/nix][nix]) and then
+1. run `nix-shell shell.nix` (or simply `nix-shell`), a nix shell should open
+1. run `npm i` (if you never did so, or you want to update)
+
+[nix]: http://nixos.org/nix/
