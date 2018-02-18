@@ -4,11 +4,13 @@
   "description": "A different approach to how elix does webcomponents, strongly inspired by elix and hopefully ideas can be merged (somehow).",
   "main": "index.js",
   "scripts": {
-    "test": "mocha "
+    "test": "mocha ",
+    "start": "static-server ./demos --port 3000"
   },
   "author": "Wolfram Kriesing",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^5.0.1"
+    "mocha": "^5.0.1",
+    "static-server": "^3.0.0"
   }
 }
