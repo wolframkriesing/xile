@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha ",
-    "start": "static-server ./demos --port 3000"
+    "start": "static-server . --port 3000"
   },
   "author": "Wolfram Kriesing",
   "license": "MIT",
