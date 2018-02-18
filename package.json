@@ -1,0 +1,14 @@
+{
+  "name": "xile",
+  "version": "1.0.0",
+  "description": "My take on a different approach to how elix does webcomponents, strongly inspired by elix and hopefully ideas can be merged (somehow).",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha "
+  },
+  "author": "Wolfram Kriesing",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^5.0.1"
+  }
+}
