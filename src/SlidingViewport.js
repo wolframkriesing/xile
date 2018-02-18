@@ -3,18 +3,16 @@ import * as fractionalSelection from './fractionalSelection.js';
 import * as symbols from './symbols.js';
 import ContentItemsMixin from './ContentItemsMixin.js';
 import ElementBase from './ElementBase.js';
-import LanguageDirectionMixin from './LanguageDirectionMixin.js';
 import SingleSelectionMixin from './SingleSelectionMixin.js';
 import SlotContentMixin from './SlotContentMixin.js';
 
 
 const Base =
   ContentItemsMixin(
-  LanguageDirectionMixin(
   SingleSelectionMixin(
   SlotContentMixin(
     ElementBase
-  ))));
+  )));
 
 
 /**
@@ -24,7 +22,6 @@ const Base =
  * 
  * @inherits ElementBase
  * @mixes ContentItemsMixin
- * @mixes LanguageDirectionMixin
  * @mixes SingleSelectionMixin
  * @mixes SlotContentMixin
  */
