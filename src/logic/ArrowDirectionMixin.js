@@ -1,6 +1,6 @@
-import './ArrowDirectionButton.js';
-import { merge } from './updates.js';
-import * as symbols from './symbols.js';
+import '../ui/ArrowDirectionButton.js';
+import { merge } from '../updates.js';
+import * as symbols from '../symbols.js';
 
 
 const arrowButtonTagKey = Symbol('arrowButtonTag');

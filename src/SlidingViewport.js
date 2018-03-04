@@ -3,7 +3,7 @@ import * as fractionalSelection from './fractionalSelection.js';
 import * as symbols from './symbols.js';
 import ContentItemsMixin from './ContentItemsMixin.js';
 import ElementBase from './ElementBase.js';
-import SingleSelectionMixin from './SingleSelectionMixin.js';
+import SingleSelectionMixin from './logic/SingleSelectionMixin.js';
 import SlotContentMixin from './SlotContentMixin.js';
 
 

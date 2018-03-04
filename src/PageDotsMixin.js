@@ -1,4 +1,4 @@
-import './PageDot.js';
+import './ui/PageDot.js';
 import { merge } from './updates.js';
 import * as symbols from './symbols.js';
 

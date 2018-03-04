@@ -1,7 +1,7 @@
-import { merge } from './updates.js';
-import * as symbols from './symbols.js';
+import { merge } from '../updates.js';
+import * as symbols from '../symbols.js';
 import HoverMixin from './HoverMixin.js';
-import WrappedStandardElement from './WrappedStandardElement.js';
+import WrappedStandardElement from '../WrappedStandardElement.js';
 
 
 const Base = 
