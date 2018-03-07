@@ -1,6 +1,6 @@
 import { merge } from '../updates.js';
 import * as symbols from '../symbols.js';
-import HoverMixin from './HoverMixin.js';
+import HoverMixin from '../mixins/HoverMixin.js';
 import WrappedStandardElement from '../WrappedStandardElement.js';
 
 

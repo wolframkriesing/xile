@@ -1,8 +1,8 @@
-import * as symbols from './symbols.js';
-import ArrowDirectionMixin from './logic/ArrowDirectionMixin.js';
-import PageDotsMixin from './PageDotsMixin.js';
+import * as symbols from '../symbols.js';
+import ArrowDirectionMixin from '../mixins/ArrowDirectionMixin.js';
+import PageDotsMixin from '../mixins/PageDotsMixin.js';
 
-import DirectionSelectionMixin from './logic/DirectionSelectionMixin.js';
+import DirectionSelectionMixin from '../mixins/DirectionSelectionMixin.js';
 import SlidingViewport from './SlidingViewport.js';
 
 

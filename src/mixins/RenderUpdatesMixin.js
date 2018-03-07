@@ -1,5 +1,5 @@
-import * as symbols from './symbols.js';
-import * as updates from './updates.js';
+import * as symbols from '../symbols.js';
+import * as updates from '../updates.js';
 
 
 /**
