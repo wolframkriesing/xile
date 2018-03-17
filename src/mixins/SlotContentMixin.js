@@ -54,12 +54,10 @@ export default function SlotContentMixin(Base) {
   class SlotContent extends Base {
 
     componentDidMount() {
-console.log('SlotContent#componentDidMount');
       if (super.componentDidMount) { super.componentDidMount(); }
 
       // Listen to changes on the default slot.
       const slot = this[symbols.contentSlot];
-console.log("slot= ", slot);
       if (slot) {
         slot.addEventListener('slotchange', () => {
 
@@ -141,7 +139,6 @@ function assignedNodesChanged(component) {
     null;
 
   // Make immutable.
-console.log("content= ", content);
   Object.freeze(content);
 
   component.setState({ content });
