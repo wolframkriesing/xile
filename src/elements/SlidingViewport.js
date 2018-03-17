@@ -1,16 +1,15 @@
 import { merge } from '../updates.js';
 import * as fractionalSelection from '../fractionalSelection.js';
 import * as symbols from '../symbols.js';
-import ContentItemsMixin from '../mixins/ContentItemsMixin.js';
+import {ContentItems} from '../mixins/ContentItemsMixin.js';
 import ElementBase from '../ElementBase.js';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin.js';
 
 
 const Base =
-  ContentItemsMixin(
   SingleSelectionMixin(
     ElementBase
-  ));
+  );
 
 
 /**
