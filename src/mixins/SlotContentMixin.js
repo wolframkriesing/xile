@@ -27,10 +27,10 @@ export class SlotContent {
         // rendering, which shouldn't happen in native Shadow DOM. We try to
         // defend against this by deferring updating state. This feels hacky.
         if (!this[symbols.rendering]) {
-          assignedNodesChanged(this);
+          this.contentChanged(assignedNodesChanged(this._contentSlot));
         } else {
           Promise.resolve().then(() => {
-            assignedNodesChanged(this);
+            this.contentChanged(assignedNodesChanged(this._contentSlot));
           });
         }
 
@@ -48,7 +48,7 @@ export class SlotContent {
           // The event didn't fire, so we're most likely in Safari.
           // Update our notion of the component content.
           this[slotchangeFiredKey] = true;
-          assignedNodesChanged(this);
+          this.contentChanged(assignedNodesChanged(this._contentSlot));
         }
       });
 
@@ -79,18 +79,13 @@ export class SlotContent {
   }
 }
 
-// The nodes assigned to the given component have changed.
-// Update the component's state to reflect the new content.
-function assignedNodesChanged(component) {
+function assignedNodesChanged(slot) {
 
-  const slot = component._contentSlot;
   const content = slot ?
     slot.assignedNodes({ flatten: true }) :
     null;
 
   // Make immutable.
   Object.freeze(content);
-
-  component.contentChanged(content);
-  // component.setState({ content });
+  return content;
 }
