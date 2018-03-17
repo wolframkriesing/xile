@@ -27,10 +27,10 @@ export class SlotContent {
         // rendering, which shouldn't happen in native Shadow DOM. We try to
         // defend against this by deferring updating state. This feels hacky.
         if (!this[symbols.rendering]) {
-          this.contentChanged(assignedNodesChanged(this._contentSlot));
+          this.notifyAboutContentChanges();
         } else {
           Promise.resolve().then(() => {
-            this.contentChanged(assignedNodesChanged(this._contentSlot));
+            this.notifyAboutContentChanges();
           });
         }
 
@@ -48,7 +48,7 @@ export class SlotContent {
           // The event didn't fire, so we're most likely in Safari.
           // Update our notion of the component content.
           this[slotchangeFiredKey] = true;
-          this.contentChanged(assignedNodesChanged(this._contentSlot));
+          this.notifyAboutContentChanges();
         }
       });
 
@@ -64,6 +64,15 @@ export class SlotContent {
     return slot;
   }
 
+  notifyAboutContentChanges() {
+    const slot = this._contentSlot;
+    const content = slot ?
+      slot.assignedNodes({ flatten: true }) :
+      null;
+    Object.freeze(content);
+    this.contentChanged(content);
+  }
+
   onContentChange(cb) {
     const handlers = this._onContentChangeHandlers || [];
     this._onContentChangeHandlers = [...handlers, cb];
@@ -77,15 +86,4 @@ export class SlotContent {
   onSlotChange(cb) {
     this._contentSlot.addEventListener('slotchange', cb);
   }
-}
-
-function assignedNodesChanged(slot) {
-
-  const content = slot ?
-    slot.assignedNodes({ flatten: true }) :
-    null;
-
-  // Make immutable.
-  Object.freeze(content);
-  return content;
 }
