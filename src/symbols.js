@@ -58,18 +58,6 @@ export const canGoLeft = Symbol('canGoLeft');
 export const canGoRight = Symbol('canGoRight');
 
 /**
- * Symbol for the `contentSlot` property.
- * 
- * [SlotContentMixin](SlotContentMixin) uses this to identify which slot
- * element in the component's shadow tree that holds the component's content.
- * By default, this is the first slot element with no "name" attribute. You
- * can override this to return a different slot.
- * 
- * @var {HTMLSlotElement} contentSlot
- */
-export const contentSlot = Symbol('contentSlot');
-
-/**
  * Symbol for the `elementsWithTransitions` property.
  * 
  * [TransitionEffectMixin](TransitionEffectMixin) inspects this property
