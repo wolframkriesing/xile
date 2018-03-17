@@ -1,13 +1,11 @@
 import { merge } from '../updates.js';
 import * as symbols from '../symbols.js';
-import SlotContentMixin from '../mixins/SlotContentMixin.js';
+import {SlotContent} from '../mixins/SlotContentMixin.js';
 import WrappedStandardElement from '../WrappedStandardElement.js';
 
 
 const Base = 
-  SlotContentMixin(
-    WrappedStandardElement.wrap('textarea')
-  );
+  WrappedStandardElement.wrap('textarea');
 
 
 /**
@@ -25,14 +23,16 @@ const Base =
  * to those specifically listed in the `AutosizeTextarea` API.
  *
  * @inherits WrappedStandardElement
- * @mixes SlotContentMixin
  */
 class AutosizeTextarea extends Base {
 
   componentDidMount() {
     if (super.componentDidMount) { super.componentDidMount(); }
 
-    this[symbols.contentSlot].addEventListener('slotchange', () => {
+    const slotContent = new SlotContent(this.shadowRoot);
+    slotContent.onContentChange(content => this.setState({ content }));
+
+    slotContent[symbols.contentSlot].addEventListener('slotchange', () => {
       this.setState({ valueTracksContent: true });
     });
 
@@ -93,7 +93,8 @@ class AutosizeTextarea extends Base {
     return Object.assign({}, super.defaultState, {
       minimumRows: 1,
       value: null,
-      valueTracksContent: true
+      valueTracksContent: true,
+      content: null,
     });
   }
 
