@@ -8,7 +8,7 @@ export class SlotContent {
     this.shadowRoot = shadowRoot;
 
     // Listen to changes on the default slot.
-    const slot = this[symbols.contentSlot];
+    const slot = this._contentSlot;
     if (slot) {
       slot.addEventListener('slotchange', () => {
 
@@ -55,22 +55,13 @@ export class SlotContent {
     }
   }
 
-  /**
-   * See [symbols.contentSlot](symbols#contentSlot).
-   */
-  get [symbols.contentSlot]() {
+  get _contentSlot() {
     const slot = this.shadowRoot && this.shadowRoot.querySelector('slot:not([name])');
     if (!this.shadowRoot || !slot) {
       /* eslint-disable no-console */
       console.warn(`SlotContentMixin expects ${this.constructor.name} to define a shadow tree that includes a default (unnamed) slot.\nSee https://elix.org/documentation/SlotContentMixin.`);
     }
     return slot;
-  }
-
-  get defaultState() {
-    return Object.assign({}, super.defaultState, {
-      content: null
-    });
   }
 
   onContentChange(cb) {
@@ -81,13 +72,18 @@ export class SlotContent {
     const handlers = this._onContentChangeHandlers || [];
     handlers.map(fn => fn(content));
   }
+  // TODO there is no unregistering of `onContentChange` handlers
+
+  onSlotChange(cb) {
+    this._contentSlot.addEventListener('slotchange', cb);
+  }
 }
 
 // The nodes assigned to the given component have changed.
 // Update the component's state to reflect the new content.
 function assignedNodesChanged(component) {
 
-  const slot = component[symbols.contentSlot];
+  const slot = component._contentSlot;
   const content = slot ?
     slot.assignedNodes({ flatten: true }) :
     null;
