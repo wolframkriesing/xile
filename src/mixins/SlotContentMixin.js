@@ -10,7 +10,7 @@ export class SlotContent {
     // Listen to changes on the default slot.
     const slot = this._contentSlot;
     if (slot) {
-      slot.addEventListener('slotchange', () => {
+      this.onSlotChange(() => {
 
         // Although slotchange isn't generally a user-driven event, it's
         // impossible for us to know whether a change in slot content is going
