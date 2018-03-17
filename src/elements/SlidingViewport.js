@@ -18,10 +18,20 @@ const Base =
  * selected.
  * 
  * @inherits ElementBase
- * @mixes ContentItemsMixin
  * @mixes SingleSelectionMixin
  */
 class SlidingViewport extends Base {
+
+  componentDidMount() {
+    if (super.componentDidMount) { super.componentDidMount(); }
+
+    this.contentItems = new ContentItems(this.shadowRoot);
+    this.contentItems.onContentChange(content => this.setState({ content }));
+  }
+
+  get items() {
+    return this.contentItems && this.contentItems.items || [];
+  }
 
   get defaultState() {
     return Object.assign({}, super.defaultState, {

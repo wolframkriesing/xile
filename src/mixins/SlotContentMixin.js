@@ -6,6 +6,7 @@ export class SlotContent {
 
   constructor(shadowRoot) {
     this.shadowRoot = shadowRoot;
+    this._content = null;
 
     // Listen to changes on the default slot.
     const slot = this._contentSlot;
@@ -70,7 +71,15 @@ export class SlotContent {
       slot.assignedNodes({ flatten: true }) :
       null;
     Object.freeze(content);
+    this.content = content;
+  }
+
+  set content(content) {
     this.contentChanged(content);
+    this._content = content;
+  }
+  get content() {
+    return this._content;
   }
 
   onContentChange(cb) {

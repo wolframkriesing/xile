@@ -9,20 +9,7 @@ const itemsKey = Symbol('items');
 const originalKey = Symbol('original');
 const previousContentKey = Symbol('previousContent');
 
-export class ContentItems {
-
-  componentDidMount() {
-    if (super.componentDidMount) { super.componentDidMount(); }
-
-    const slotContent = new SlotContent(this.shadowRoot);
-    slotContent.onContentChange(content => this.setState({ content }));
-  }
-
-  get defaultState() {
-    return Object.assign({}, super.defaultState, {
-      content: null
-    });
-  }
+export class ContentItems extends SlotContent {
 
   /**
    * Returns a set of calculations about the given item that can be derived from
@@ -74,10 +61,10 @@ export class ContentItems {
       // Prefer base result if it's defined.
       return base;
     }
-    const content = this.state.content;
+    const content = this.content;
     if (this[previousContentKey] !== content) {
       // Memoize
-      this[itemsKey] = this.itemsForState(this.state);
+      this[itemsKey] = this.itemsForState();
       // Make immutable.
       Object.freeze(this[itemsKey]);
       this[previousContentKey] = content;
@@ -85,22 +72,9 @@ export class ContentItems {
     return this[itemsKey];
   }
 
-  /**
-   * Given an element state (which might be its current state, or some other
-   * hypothetical state), return the items from that state.
-   *
-   * By default, this inspects the state member `state.content`, then uses the
-   * helper function
-   * [content.substantiveElements](content#substantiveElements) to subtract
-   * out any nodes that would not normally be visible to the user. You can
-   * override this to provide an alternative mapping of state to items.
-   *
-   * @param {object} state - the element state to extract items from
-   * @returns {Element[]|null} the items for the indicated state
-   */
-  itemsForState(state) {
-    return state.content ?
-      substantiveElements(state.content) :
+  itemsForState() {
+    return this.content ?
+      substantiveElements(this.content) :
       null;
   }
 
