@@ -1,6 +1,7 @@
 import { substantiveElements } from '../content.js';
 import * as symbols from '../symbols.js';
 import * as updates from '../updates.js';
+import { SlotContent } from './SlotContentMixin.js';
 
 
 // Symbols for private data members on an element.
@@ -46,6 +47,19 @@ const previousContentKey = Symbol('previousContent');
  */
 export default function ContentItemsMixin(Base) {
   return class ContentItems extends Base {
+
+    componentDidMount() {
+      if (super.componentDidMount) { super.componentDidMount(); }
+
+      const slotContent = new SlotContent(this.shadowRoot);
+      slotContent.onContentChange(content => this.setState({ content }));
+    }
+
+    get defaultState() {
+      return Object.assign({}, super.defaultState, {
+        content: null
+      });
+    }
 
     /**
      * Returns a set of calculations about the given item that can be derived from

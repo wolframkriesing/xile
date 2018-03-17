@@ -4,15 +4,13 @@ import * as symbols from '../symbols.js';
 import ContentItemsMixin from '../mixins/ContentItemsMixin.js';
 import ElementBase from '../ElementBase.js';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin.js';
-import SlotContentMixin from '../mixins/SlotContentMixin.js';
 
 
 const Base =
   ContentItemsMixin(
   SingleSelectionMixin(
-  SlotContentMixin(
     ElementBase
-  )));
+  ));
 
 
 /**
@@ -23,7 +21,6 @@ const Base =
  * @inherits ElementBase
  * @mixes ContentItemsMixin
  * @mixes SingleSelectionMixin
- * @mixes SlotContentMixin
  */
 class SlidingViewport extends Base {
 
