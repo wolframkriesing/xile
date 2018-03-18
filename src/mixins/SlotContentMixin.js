@@ -75,8 +75,8 @@ export class SlotContent {
   }
 
   set content(content) {
-    this.contentChanged(content);
     this._content = content;
+    this.contentChanged(content);
   }
   get content() {
     return this._content;

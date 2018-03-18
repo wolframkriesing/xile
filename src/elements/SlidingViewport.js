@@ -30,8 +30,12 @@ class SlidingViewport extends Base {
   }
 
   get items() {
-    return this.contentItems && this.contentItems.items || [];
+    return this.contentItems ? this.contentItems.items : [];
   }
+  itemsForState() {
+    return this.items;
+  }
+
 
   get defaultState() {
     return Object.assign({}, super.defaultState, {
